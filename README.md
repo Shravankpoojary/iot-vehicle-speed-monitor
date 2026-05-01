@@ -3,19 +3,14 @@
 An IoT-based speed tracking system that uses a Raspberry Pi and dual IR break-beam sensors to calculate object velocity and log real-time data to ThingSpeak.
 
 ## Overview
-A real-time speed monitoring system that measures the velocity of a moving object
-(such as a toy car on a track) using two IR break-beam sensors placed a known
-distance apart. The Raspberry Pi timestamps the moment each sensor beam is broken,
-calculates speed in km/h, classifies it as FAST / NORMAL / SLOW, and uploads the
-results to the ThingSpeak cloud platform. This mimics speed-monitoring systems used
-on roads, conveyor belts, and production lines.
+A real-time speed monitoring system that measures the velocity of a moving object (such as a toy car on a track) using two IR break-beam sensors placed a known distance apart. The Raspberry Pi timestamps the moment each sensor beam is broken, calculates speed in km/h, classifies it as FAST / NORMAL / SLOW, and uploads the results to the ThingSpeak cloud platform. This mimics speed-monitoring systems used on roads, conveyor belts, and production lines.
 
 ## Block Diagram
 
 <p align="center">
   <img width="1449" height="774" alt="System Block Diagram" src="https://github.com/user-attachments/assets/69e1594c-98d0-435a-acda-9ddf6cae4ea6" />
   <br>
-  <em>Figure X: Block diagram illustrating the system architecture and data flow.</em>
+  <em>Figure 1: Block diagram illustrating the system architecture and data flow.</em>
 </p>
 
 ## System setup snapshot
@@ -68,7 +63,7 @@ on roads, conveyor belts, and production lines.
 
 ## Software Required
 - Raspberry Pi OS (Raspbian)
-- Python 3
+- Thonny IDE
 - Libraries:
   - `RPi.GPIO` (pre-installed on Raspberry Pi OS)
   - `requests` — install via: `pip3 install requests`
@@ -94,7 +89,7 @@ on roads, conveyor belts, and production lines.
 5. Copy your **Write API Key** from the ThingSpeak channel
 6. Open `speed_monitor.py` and update the following:
    ```python
-   DISTANCE_METERS      = 0.20          # Set exact sensor spacing in meters
+   DISTANCE_METERS      = 0.86          # Set exact sensor spacing in meters
    THINGSPEAK_WRITE_KEY = "YOUR_KEY"    # Replace with your Write API Key
    SPEED_FAST           = 10.0          # Adjust threshold if needed
    SPEED_SLOW           = 2.0           # Adjust threshold if needed
@@ -110,7 +105,7 @@ on roads, conveyor belts, and production lines.
 |--------------------|------------------------|
 | Sensor 1 GPIO      | GPIO17 (Pin 11)        |
 | Sensor 2 GPIO      | GPIO27 (Pin 13)        |
-| Sensor spacing     | 0.20 m (20 cm)         |
+| Sensor spacing     | 0.86 m (8.6 cm)         |
 | Speed formula      | (Distance ÷ Time) × 3.6 |
 | FAST threshold     | ≥ 10.0 km/h            |
 | SLOW threshold     | ≤ 2.0 km/h             |
@@ -122,26 +117,21 @@ on roads, conveyor belts, and production lines.
 
 ## Expected Output
 
-<!-- Figure X: Serial Monitor Output -->
+<!-- Figure 3: Serial Monitor Output -->
 <p align="center">
   <img width="100%" alt="Serial Monitor Output Data" src="https://github.com/user-attachments/assets/2ea42aba-9873-4680-9a7a-3e5d8e2b694f" />
   <br>
-  <em>Figure X: Serial Monitor output displaying real-time sensor readings and successful cloud upload confirmations.</em>
+  <em>Figure 4: Serial Monitor output displaying real-time sensor readings and successful cloud upload confirmations.</em>
 </p>
 
 <br><br> <!-- Space between figures -->
 
-<!-- Figure Y: ThingSpeak Dashboard -->
+<!-- Figure 5: ThingSpeak Dashboard -->
 <p align="center">
   <img width="100%" alt="ThingSpeak Cloud Dashboard" src="https://github.com/user-attachments/assets/0134d610-9529-4579-837a-68c4d8f4c15d" />
   <br>
-  <em>Figure Y: ThingSpeak cloud dashboard visualizing the logged data points and trends over time.</em>
+  <em>Figure 5: ThingSpeak cloud dashboard visualizing the logged data points and trends over time.</em>
 </p>
 
 
 
-```
-## Stopping the Script
-Press `Ctrl + C` to stop. GPIO pins are automatically cleaned up on exit.
-## License
-This project is open-source and free to use for educational purposes.
