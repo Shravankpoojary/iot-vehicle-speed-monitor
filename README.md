@@ -87,6 +87,13 @@ A real-time speed monitoring system that measures the velocity of a moving objec
    - Field 2: Time (ms)
    - Field 3: Status
 5. Copy your **Write API Key** from the ThingSpeak channel
+
+<p align="center">
+  <img width="784" height="336" alt="ThingSpeak Credentials Location" src="https://github.com/user-attachments/assets/90ddd28a-8a26-428a-a25e-998c389549e9" />
+  <br>
+  <em>Figure 3: Locating ThingSpeak Credentials for Firmware.</em>
+</p>
+
 6. Open `speed_monitor.py` and update the following:
    ```python
    DISTANCE_METERS      = 0.86          # Set exact sensor spacing in meters
