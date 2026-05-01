@@ -9,6 +9,15 @@ distance apart. The Raspberry Pi timestamps the moment each sensor beam is broke
 calculates speed in km/h, classifies it as FAST / NORMAL / SLOW, and uploads the
 results to the ThingSpeak cloud platform. This mimics speed-monitoring systems used
 on roads, conveyor belts, and production lines.
+
+## Block Diagram
+
+<p align="center">
+  <img width="1449" height="774" alt="System Block Diagram" src="https://github.com/user-attachments/assets/69e1594c-98d0-435a-acda-9ddf6cae4ea6" />
+  <br>
+  <em>Figure X: Block diagram illustrating the system architecture and data flow.</em>
+</p>
+
 ## How It Works
 1. Object approaches the track — both IR beams are intact (sensors output HIGH)
 2. Object breaks **IR Sensor 1** (START gate) — GPIO17 goes LOW → interrupt fires
@@ -18,6 +27,7 @@ on roads, conveyor belts, and production lines.
 6. Speed (km/h) is calculated: `Speed = (Distance / Time) × 3.6`
 7. Speed is classified: FAST (≥ 10 km/h), SLOW (≤ 2 km/h), or NORMAL
 8. Results are printed to the terminal and uploaded to ThingSpeak via WiFi
+
 ## Hardware Required
 - Raspberry Pi (any model with GPIO — Pi 3B / 4 recommended)
 - 2× IR Break-Beam Sensor modules
@@ -25,6 +35,7 @@ on roads, conveyor belts, and production lines.
 - USB power supply for Raspberry Pi
 - Ruler / measuring tape (to set the sensor distance accurately)
 - Toy car / track or any moving object for testing
+  
 ## Wiring
 ### IR Sensor 1 — START Gate
 | IR Sensor Pin | Raspberry Pi Pin       |
@@ -32,17 +43,20 @@ on roads, conveyor belts, and production lines.
 | VCC           | Pin 2  (5V)            |
 | GND           | Pin 6  (GND)           |
 | OUT           | GPIO17 — Pin 11        |
+
 ### IR Sensor 2 — END Gate
 | IR Sensor Pin | Raspberry Pi Pin       |
 |---------------|------------------------|
 | VCC           | Pin 4  (5V)            |
 | GND           | Pin 9  (GND)           |
 | OUT           | GPIO27 — Pin 13        |
+
 > **Note:** IR break-beam sensors output **HIGH** when beam is intact and go
 > **LOW** when the beam is broken. Internal pull-up resistors are enabled in
 > software (`GPIO.PUD_UP`) — no external resistors required.
 > **Important:** Measure the distance between both sensors accurately with a
 > ruler and update `DISTANCE_METERS` in the code accordingly.
+
 ## Software Required
 - Raspberry Pi OS (Raspbian)
 - Python 3
@@ -50,11 +64,13 @@ on roads, conveyor belts, and production lines.
   - `RPi.GPIO` (pre-installed on Raspberry Pi OS)
   - `requests` — install via: `pip3 install requests`
   - `datetime`, `time` (Python built-ins)
+  
 ## Cloud Platform
 - ThingSpeak IoT — https://thingspeak.com
 - Field 1 → Speed (km/h)
 - Field 2 → Time taken (ms)
 - Field 3 → Status (FAST / NORMAL / SLOW)
+  
 ## Setup Instructions
 1. Connect IR sensors to Raspberry Pi as per the wiring table above
 2. Install the `requests` library:
@@ -79,6 +95,7 @@ on roads, conveyor belts, and production lines.
    python3 speed_monitor.py
    ```
 8. Pass an object through both sensors and observe the output
+
 ## Expected Output
 **Terminal (SSH / Console):**
 ```
@@ -121,8 +138,7 @@ on roads, conveyor belts, and production lines.
 | ThingSpeak cooldown| 15 seconds             |
 | Trigger edge       | FALLING (beam broken)  |
 | GPIO mode          | BCM                    |
-## Block Diagram
-![Block Diagram](block_diagram.png)
+
 ## Project Structure
 ```
 ├── speed_monitor.py              # Main Python script — all logic
