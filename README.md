@@ -18,6 +18,15 @@ on roads, conveyor belts, and production lines.
   <em>Figure X: Block diagram illustrating the system architecture and data flow.</em>
 </p>
 
+## System setup snapshot
+
+<p align="center">
+  <img width="100%" alt="IoT Vehicle Speed Monitor Hardware Setup" src="https://github.com/user-attachments/assets/f28411d8-fa91-4e9f-9c2e-382f26e7a4ea" />
+  <br>
+  <em>Figure 2: Physical hardware implementation of the IoT Vehicle Speed Monitor showing the Raspberry Pi and IR sensor alignment on the test track.</em>
+</p>
+
+
 ## How It Works
 1. Object approaches the track — both IR beams are intact (sensors output HIGH)
 2. Object breaks **IR Sensor 1** (START gate) — GPIO17 goes LOW → interrupt fires
@@ -96,35 +105,6 @@ on roads, conveyor belts, and production lines.
    ```
 8. Pass an object through both sensors and observe the output
 
-## Expected Output
-**Terminal (SSH / Console):**
-```
-==================================================
-   IoT Speed Monitoring System
-   Raspberry Pi + IR Break-Beam Sensors
-   ThingSpeak Dashboard
-==================================================
-  Sensor distance : 20.0 cm
-  Fast threshold  : 10.0 km/h
-  Slow threshold  : 2.0 km/h
-  Upload cooldown : 15s
-==================================================
-  Waiting for objects...
-[GPIO] Pins configured successfully
-[GPIO] Sensor 1 → GPIO17
-[GPIO] Sensor 2 → GPIO27
-[Self Test] ✓ Both sensors ready!
-[Sensor 1] ⚡ Object detected at 14:32:05.412
-[Sensor 1] Timing started — waiting for Sensor 2...
-[Sensor 2] ⚡ Object detected at 14:32:05.672
-─────────────────────────────────
-  Distance    : 20.0 cm
-  Time taken  : 260.0 ms
-  Speed       : 2.77 km/h
-  Status      : NORMAL
-─────────────────────────────────
-[ThingSpeak] ✓ Data uploaded! Entry ID: 18342
-```
 ## Key Parameters
 | Parameter          | Value / Default        |
 |--------------------|------------------------|
@@ -139,11 +119,27 @@ on roads, conveyor belts, and production lines.
 | Trigger edge       | FALLING (beam broken)  |
 | GPIO mode          | BCM                    |
 
-## Project Structure
-```
-├── speed_monitor.py              # Main Python script — all logic
-├── speed_monitor_block_diagram.html  # System block diagram (open in browser)
-└── README.md
+
+## Expected Output
+
+<!-- Figure X: Serial Monitor Output -->
+<p align="center">
+  <img width="100%" alt="Serial Monitor Output Data" src="https://github.com/user-attachments/assets/2ea42aba-9873-4680-9a7a-3e5d8e2b694f" />
+  <br>
+  <em>Figure X: Serial Monitor output displaying real-time sensor readings and successful cloud upload confirmations.</em>
+</p>
+
+<br><br> <!-- Space between figures -->
+
+<!-- Figure Y: ThingSpeak Dashboard -->
+<p align="center">
+  <img width="100%" alt="ThingSpeak Cloud Dashboard" src="https://github.com/user-attachments/assets/0134d610-9529-4579-837a-68c4d8f4c15d" />
+  <br>
+  <em>Figure Y: ThingSpeak cloud dashboard visualizing the logged data points and trends over time.</em>
+</p>
+
+
+
 ```
 ## Stopping the Script
 Press `Ctrl + C` to stop. GPIO pins are automatically cleaned up on exit.
