@@ -140,5 +140,14 @@ A real-time speed monitoring system that measures the velocity of a moving objec
   <em>Figure 5: ThingSpeak cloud dashboard visualizing the logged data points and trends over time.</em>
 </p>
 
+## Project Demonstration
 
+<p align="center">
+  <b>▶️ CLICK THE IMAGE BELOW TO WATCH THE VIDEO DEMONSTRATION</b><br><br>
+  <a href="https://youtu.be/A9Zi07CGaaA">
+    <img width="100%" alt="IoT Vehicle Speed Monitor Project Demo" src="https://img.youtube.com/vi/A9Zi07CGaaA/maxresdefault.jpg" />
+  </a>
+  <br>
+  <em>YouTube video showing a real-time hardware demonstration of the Raspberry Pi and IR sensors calculating vehicle speed and logging the data to a cloud dashboard.</em>
+</p>
 
